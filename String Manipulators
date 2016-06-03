@@ -1,0 +1,22 @@
+# This function splits a string delimited by "," but considers everything between two "s in the same element
+def parse_the_line(line):
+    lst = line.split(',')
+    for i in range(len(lst)):
+        lst[i] = lst[i].strip()
+    s = 0       # Control switch
+    rl = []     # List that will be returned
+    sl = []     # Sublist that groups everything between two "s
+    for i in range(len(lst)):
+        lst[i].strip()
+        if lst[i][0] == '"':
+            s = -1
+            sl.append(lst[i][1:])
+        elif lst[i][-1] == '"':
+            s = 0
+            sl.append(lst[i][:-1])
+            rl.append(sl)
+        elif s:
+            sl.append(lst[i])
+        else:
+            rl.append(lst[i])
+    return rl
